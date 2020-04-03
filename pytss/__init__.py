@@ -1,5 +1,9 @@
-from interface import tss_lib, ffi
-import tspi_exceptions
+from __future__ import absolute_import
+from builtins import range
+from past.builtins import basestring
+from builtins import object
+from .interface import tss_lib, ffi
+from . import tspi_exceptions
 import hashlib
 
 
@@ -474,7 +478,7 @@ class TspiTPM(TspiObject):
         tss_lib.Tspi_Context_FreeMemory(self.context, blob[0])
         return ret
 
-class TspiContext():
+class TspiContext(object):
     def __init__(self):
         self.context = ffi.new('TSS_HCONTEXT *')
         tss_lib.Tspi_Context_Create(self.context)

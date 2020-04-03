@@ -1,6 +1,7 @@
+from __future__ import absolute_import
 import functools
 import os
-from tspi_exceptions import *
+from .tspi_exceptions import *
 
 from cffi import FFI, VerificationError
 INTERFACE_H = os.path.dirname(os.path.abspath(__file__)) + '/interface.h'
