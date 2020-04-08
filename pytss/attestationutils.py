@@ -1,6 +1,7 @@
+#!/usr/bin/python3
 from pytss import TspiContext
-from tspi_defines import *
-import tspi_exceptions
+from .tspi_defines import *
+from pytss import tspi_exceptions
 import uuid
 import M2Crypto
 from M2Crypto import m2

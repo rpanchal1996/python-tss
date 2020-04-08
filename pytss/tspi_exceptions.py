@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 class TspiException(Exception):
     pass
 

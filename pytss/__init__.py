@@ -1,9 +1,10 @@
+#!/usr/bin/python3
 from __future__ import absolute_import
 from builtins import range
 from past.builtins import basestring
 from builtins import object
 from .interface import tss_lib, ffi
-from . import tspi_exceptions
+from pytss import tspi_exceptions
 import hashlib
 
 
