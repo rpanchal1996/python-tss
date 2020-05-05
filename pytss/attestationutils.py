@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+from __future__ import division
 from pytss import TspiContext
 from .tspi_defines import *
 from pytss import tspi_exceptions
@@ -486,7 +487,7 @@ def create_aik(context):
     :returns: a tuple containing the RSA public key and a TSS key blob
     """
 
-    n = bytearray([0xff] * (2048/8))
+    n = bytearray([0xff] * (2048//8))
 
     srk = context.load_key_by_uuid(TSS_PS_TYPE_SYSTEM, srk_uuid)
 
@@ -579,7 +580,7 @@ def generate_challenge(context, ekcert, aikpub, secret, ek=None):
     asymplain += m.digest()
 
     # Pad with the TCG varient of OAEP
-    asymplain = tpm_oaep(asymplain, len(rsakey)/8)
+    asymplain = tpm_oaep(asymplain, len(rsakey)//8)
 
     # Generate the EKpub-encrypted asymmetric buffer containing the aes key
     asymenc = bytearray(rsakey.public_encrypt(asymplain,
