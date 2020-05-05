@@ -371,7 +371,7 @@ def tpm_oaep(plaintext, keylen):
     :returns: a padded plaintext
     """
     m = hashlib.sha1()
-    m.update('TCPA')
+    m.update('TCPA'.encode("utf-8"))
 
     seed = os.urandom(20)
     seedstart = 1
