@@ -463,7 +463,7 @@ def get_ekcert(context):
         print("Invalid header")
         print(blob[0], blob[1])
         return None
-    
+
     ekbuf = bytearray()
     ekoffset = 0
 
@@ -556,8 +556,8 @@ def generate_challenge(context, ekcert, aikpub, secret, ek=None):
 
     if ek is None:
         # Replace rsaesOaep OID with rsaEncryption
-        ekcert = ekcert.replace('\x2a\x86\x48\x86\xf7\x0d\x01\x01\x07',
-                                '\x2a\x86\x48\x86\xf7\x0d\x01\x01\x01')
+        ekcert = ekcert.replace(b'\x2a\x86\x48\x86\xf7\x0d\x01\x01\x07',
+                                b'\x2a\x86\x48\x86\xf7\x0d\x01\x01\x01')
 
         x509 = M2Crypto.X509.load_cert_string(ekcert, M2Crypto.X509.FORMAT_DER)
         pubkey = x509.get_pubkey()
@@ -605,7 +605,7 @@ def aik_challenge_response(context, aikblob, asymchallenge, symchallenge):
     :param context: The TSS context to use
     :param aikblob: The Attestation Identity Key blob
     :param asymchallenge: The asymmetrically encrypted challenge
-    :param symchallenge: The symmertrically encrypted challenge    
+    :param symchallenge: The symmertrically encrypted challenge
     :returns: The decrypted challenge
     """
 
