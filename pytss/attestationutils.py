@@ -11,6 +11,7 @@ import hashlib
 import os
 import struct
 import base64
+import binascii
 
 well_known_secret = bytearray([0] * 20)
 srk_uuid = uuid.UUID('{00000000-0000-0000-0000-000000000001}')
@@ -340,8 +341,9 @@ def i2osp(x, x_len):
         h = h[:-1]
     if len(h) & 1 == 1:
         h = '0%s' % h
-    x = h.decode('hex')
-    return '\x00' * int(x_len-len(x)) + x
+    h = h.encode("utf-8")
+    x = binascii.hexlify(h)
+    return b'\x00' * int(x_len-len(x)) + x
 
 
 def mgf1(mgf_seed, mask_len, hash_class=hashlib.sha1):
