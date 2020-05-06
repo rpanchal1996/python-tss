@@ -590,8 +590,8 @@ def generate_challenge(context, ekcert, aikpub, secret, ek=None):
 
     # And symmetrically encrypt the secret with AES
     cipher = M2Crypto.EVP.Cipher('aes_128_cbc', aeskey, iv, 1)
-    cipher.update(secret)
-    symenc = cipher.final()
+    symenc = cipher.update(secret)
+    symenc = symenc + cipher.final()
 
     symheader = struct.pack('!llhhllll', len(symenc) + len(iv),
                             TPM_ALG_AES, TPM_ES_SYM_CBC_PKCS5PAD,
