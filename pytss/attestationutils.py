@@ -342,7 +342,7 @@ def i2osp(x, x_len):
     if len(h) & 1 == 1:
         h = '0%s' % h
     h = h.encode("utf-8")
-    x = binascii.hexlify(h)
+    x = binascii.unhexlify(h)
     return b'\x00' * int(x_len-len(x)) + x
 
 
