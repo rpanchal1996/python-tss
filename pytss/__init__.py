@@ -30,7 +30,7 @@ class TspiObject(object):
     def __init__(self, context, ctype, tss_type, flags, handle=None):
         """
         Init a TSPI object
-        
+
         :param context: The TSS context to use
         :param ctype: The C type associated with this TSS object
         :param tss_type: The TSS type associated with this TSS object
@@ -47,13 +47,13 @@ class TspiObject(object):
                                           self.handle)
 
     def get_handle(self):
-        """Return the TSS handle for the object"""        
+        """Return the TSS handle for the object"""
         return self.handle[0]
 
     def set_attribute_uint32(self, attrib, sub, val):
         """
         Set a 32 bit attribute associated with a given object
-        
+
         :param attrib: The attribute to modify
         :param sub: The subattribute to modify
         :param val: The value to assign
@@ -353,9 +353,9 @@ class TspiTPM(TspiObject):
         """
         bloblen = ffi.new('UINT32 *')
         blob = ffi.new('BYTE **')
-        tss_lib.Tspi_TPM_CollateIdentityRequest(self.get_handle(), 
+        tss_lib.Tspi_TPM_CollateIdentityRequest(self.get_handle(),
                                             srk.get_handle(),
-                                            pubkey.get_handle(), 0, "",
+                                            pubkey.get_handle(), 0, b"",
                                             aik.get_handle(), tss_lib.TSS_ALG_AES,
                                             bloblen, blob)
         ret = bytearray(blob[0][0:bloblen[0]])
@@ -585,7 +585,7 @@ class TspiContext(object):
         return key
 
     def get_tpm_object(self):
-        """Returns the TspiTPM associated with this context"""        
+        """Returns the TspiTPM associated with this context"""
         return self.tpm
 
 
